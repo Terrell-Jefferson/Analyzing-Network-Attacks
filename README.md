@@ -31,7 +31,7 @@ You take the server offline temporarily so that the machine can recover and retu
 Section 1: Identify the type of attack that may have caused this
 network interruption
 
-**One potential explanation for the website's connection timeout error message is:** A denial-of-service (DoS) attack targeting the web server’s ability to accept new TCP connections.
+**One potential explanation for the website's connection timeout error message is:** A denial-of-service (DoS) attack.
 
 **The logs show that:** A large number of TCP SYN packets were sent from an unfamiliar IP address, overwhelming the server and preventing it from completing connection requests.
 
