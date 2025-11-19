@@ -14,6 +14,8 @@ A mock analysis of a DoS network attack for an affected company, completed as pa
    
 The goal is to investigate a critical service interruption by analyzing abnormal TCP traffic captured from a packet sniffer. The objective is to identify the type of attack affecting the organization’s web server, interpret patterns such as excessive SYN requests, and determine how the attack caused connection timeouts for employees and customers. This exercise requires reviewing packet-level evidence, documenting findings, identifying the likely attack method, and communicating the impact and next steps to management.
 
+-------
+
 # Scenario  <a name="scenario">
 You work as a security analyst for a travel agency that advertises sales and promotions on the company’s website. The employees of the company regularly access the company’s sales webpage to search for vacation packages their customers might like. 
 
@@ -25,24 +27,24 @@ You take the server offline temporarily so that the machine can recover and retu
 
 [Wireshark TCP_HTTP log.xlsx](https://github.com/user-attachments/files/23618289/Wireshark.TCP_HTTP.log.xlsx) (**OPEN IN GOOGLE SHEETS**)
 
+-------
 
 # Cybersecurity Incident Report  <a name="cybersecurity-incident-report">
 
-Section 1: Identify the type of attack that may have caused this
-network interruption
+**Section 1: Identify the type of attack that may have caused this
+network interruption**
 
-**One potential explanation for the website's connection timeout error message is:** A denial-of-service (DoS) attack.
+One potential explanation for the website's connection timeout error message is: A denial-of-service (DoS) attack.
 
-**The logs show that:** A large number of TCP SYN packets were sent from an unfamiliar IP address, overwhelming the server and preventing it from completing connection requests.
+The logs show that: A large number of TCP SYN packets were sent from an unfamiliar IP address, overwhelming the server and preventing it from completing connection requests.
 
-**This event could be:** A SYN flood attack, which is a specific type of DoS attack that overwhelms a server by flooding it with incomplete TCP handshakes.
+This event could be: A SYN flood attack, which is a specific type of DoS attack that overwhelms a server by flooding it with incomplete TCP handshakes.
 
--------
 
-Section 2: Explain how the attack is causing the website to malfunction
+**Section 2: Explain how the attack is causing the website to malfunction**
 
-**When website visitors try to establish a connection with the web server, a three-way
-handshake occurs using the TCP protocol. Explain the three steps of the handshake:**
+When website visitors try to establish a connection with the web server, a three-way
+handshake occurs using the TCP protocol. Explain the three steps of the handshake:
 
 1. SYN: The client sends a SYN packet to the server to request a connection.
 
@@ -51,10 +53,10 @@ handshake occurs using the TCP protocol. Explain the three steps of the handshak
 3. ACK: The client sends a final ACK packet to acknowledge the connection and complete the setup.
 
 
-**Explain what happens when a malicious actor sends a large number of SYN packets all at
-once:** The server allocates connection slots and resources for each SYN it receives, but the attacker never completes the handshake with an ACK. Thus, the server fills up its queue of half-open connections due to multiple SYN packets being received, and there is no space/available resources for anyone else.
+Explain what happens when a malicious actor sends a large number of SYN packets all at
+once: The server allocates connection slots and resources for each SYN it receives, but the attacker never completes the handshake with an ACK. Thus, the server fills up its queue of half-open connections due to multiple SYN packets being received, and there is no space/available resources for anyone else.
 
-**Explain what the logs indicate and how that affects the server:** The logs show a flood of SYN packets from a suspicious IP address (203.0.113.0). This affects the server’s connection queue by overwhelming it, causing it to stop responding to normal requests. In the end, the server is too overwhelmed and can no longer establish complete TCP sessions.
+Explain what the logs indicate and how that affects the server: The logs show a flood of SYN packets from a suspicious IP address (203.0.113.0). This affects the server’s connection queue by overwhelming it, causing it to stop responding to normal requests. In the end, the server is too overwhelmed and can no longer establish complete TCP sessions.
 
 -------
 
